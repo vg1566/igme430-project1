@@ -10,11 +10,40 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <h1 class="title">Project 1</h1>
+    <h1 class="title">Make a Bouquet of Flowers</h1>
     <hr>
-    <section id="bouquet"><img src="rose.png" alt="rose"></section>
-    <section id="selected-flowers"></section>
-    <section id="flower-types"></section>
+    <main>
+        <section id="bouquet">
+            <img id="flower1-img">
+            <img id="flower2-img">
+            <img id="flower3-img">
+        </section>
+        <hr>
+        <section>
+            <span>This bouquet is for: </span>
+            <input type="text" id="name">
+            <input type="button" value="Save" id="save" class="button">
+        </section>
+        <br>
+        <section id="selected-flowers">
+            <button id="flower1-box" class="button">Edit flower 1</button>
+            <button id="flower2-box" class="button">Edit flower 2</button>
+        </section>
+    
+        <section id="flower-types">
+            <p>Editing flower <span id="selection">1</span>'s type.</p>
+            <button id="rose" class="button">Rose</button>
+            <button id="cherry" class="button">Cherry Blossom</button>
+        </section>
+        <br>
+        <section>
+            <span>Find a bouquet: </span>
+            <input type="text" id="oldName">
+            <input type="button" value="Search" id="search" class="button">
+        </section>
+        <span id="message"></span>
+    </main>
+    <hr>
     <footer>
         <p>&copy; 2021 Valentina Genoese-Zerbi</p>
     </footer>
