@@ -51,7 +51,7 @@ const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
 
   // grab params
-  let params = query.parse(parsedUrl.query);
+  const params = query.parse(parsedUrl.query);
 
   // handle the request. If no handler found, use notFound
   if (urlStruct[request.method][parsedUrl.pathname]) {
