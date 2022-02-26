@@ -35,10 +35,13 @@ const urlStruct = {
     '/skeleton.css': mixedHandler.getCSS,
     '/main.js': mixedHandler.getJS,
     '/getBouquet': jsonHandler.getBouquet,
+    '/vase-base.png': mixedHandler.getPng,
     '/rose1.png': mixedHandler.getPng,
     '/rose2.png': mixedHandler.getPng,
+    '/rose3.png': mixedHandler.getPng,
     '/cherry1.png': mixedHandler.getPng,
     '/cherry2.png': mixedHandler.getPng,
+    '/cherry3.png': mixedHandler.getPng,
     notFound: jsonHandler.notFound,
   },
   POST: {

@@ -1,11 +1,12 @@
 const flowerTypes = ['rose', 'cherry'];
 
-let chosenFlowers = [0, 0];
+let chosenFlowers = [0, 0, 0];
 let selectedFlower = 1;
 
 const setFlowers = () => {
     document.querySelector('#flower1-img').src = `/${flowerTypes[chosenFlowers[0]]}1.png`;
     document.querySelector('#flower2-img').src = `/${flowerTypes[chosenFlowers[1]]}2.png`;
+    document.querySelector('#flower3-img').src = `/${flowerTypes[chosenFlowers[2]]}3.png`;
 }
 
 // Selects which flower in the bouquet is editing (does NOT select a type of flower)
@@ -55,10 +56,12 @@ const sendFetchRequest = (url, requestedMethod) => {
 };
 
 const init = () => {
-    // set default flowers
+    
+    // set and display default bouquet
     setFlowers();
+    document.querySelector('#base-img').src = '/vase-base.png';
 
-   // save new bouquet 
+    // save new bouquet 
     const saveBtn = document.querySelector('#save');
     saveBtn.onclick = sendPost;
 
@@ -69,8 +72,10 @@ const init = () => {
 
     const flower1Btn = document.querySelector('#flower1-box');
     const flower2Btn = document.querySelector('#flower2-box');
+    const flower3Btn = document.querySelector('#flower3-box');
     flower1Btn.onclick = () => { selectFlower(1) };
     flower2Btn.onclick = () => { selectFlower(2) };
+    flower3Btn.onclick = () => { selectFlower(3) };
 
     const roseBtn = document.querySelector('#rose');
     const cherryBtn = document.querySelector('#cherry');
