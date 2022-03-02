@@ -68,6 +68,7 @@ const handleResponse = async (response) => {
 const sendPost = async () => {
     const nameBox = document.querySelector('#name');
     const data = `name=${nameBox.value.toLowerCase()}&bouquet=${chosenFlowers}`;
+    nameBox.value = '';
 
     let response = await fetch('/addBouquet', {
       method: 'POST',
