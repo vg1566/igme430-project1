@@ -48,15 +48,20 @@ const exportImg = () => {
 
 const handleResponse = async (response) => {
     console.log(response);
-    const resObj = await response.json();
-    console.log(resObj);
-    if(resObj.bouquet) {
-        chosenFlowers = resObj.bouquet.split(',').map((num) => { return parseInt(num, 10) });
-        setFlowers();
-        document.querySelector('#message').innerHTML = 'Bouquet Found';
+    if(response.status === 204) {
+        document.querySelector('#message').innerHTML = 'Updated Successfully.';
     }
-    if(resObj.message) {
-        document.querySelector('#message').innerHTML = resObj.message;
+    else {
+        const resObj = await response.json();
+        console.log(resObj);
+        if(resObj.bouquet) {
+            chosenFlowers = resObj.bouquet.split(',').map((num) => { return parseInt(num, 10) });
+            setFlowers();
+            document.querySelector('#message').innerHTML = 'Bouquet Found!';
+        }
+        if(resObj.message) {
+            document.querySelector('#message').innerHTML = resObj.message;
+        }
     }
 }
 
@@ -78,7 +83,8 @@ const sendPost = async () => {
 
 const sendFetchRequest = (url, requestedMethod) => {
     const options = {
-        method: requestedMethod
+        method: requestedMethod,
+        'Accept': 'application/json',
     }
     let fetchPromise = fetch(url, options);
 

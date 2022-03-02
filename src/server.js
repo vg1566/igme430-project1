@@ -29,6 +29,9 @@ const handlePost = (request, response) => {
 }; // '/getUsers': jsonHandler.getUsers,
 
 const urlStruct = {
+  HEAD: {
+    '/getBouquet': jsonHandler.getBouquetMeta,
+  },
   GET: {
     '/': mixedHandler.getIndex,
     '/style.css': mixedHandler.getCSS,
@@ -45,7 +48,7 @@ const urlStruct = {
     '/calla1.png': mixedHandler.getPng,
     '/calla2.png': mixedHandler.getPng,
     '/calla3.png': mixedHandler.getPng,
-    notFound: jsonHandler.notFound,
+    notFound: mixedHandler.notFound,
   },
   POST: {
     '/addBouquet': handlePost,

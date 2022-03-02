@@ -1,10 +1,17 @@
 const fs = require('fs');
 
 const index = fs.readFileSync(`${__dirname}/../client/client.html`);
+const notFoundPage = fs.readFileSync(`${__dirname}/../client/not-found.html`);
 
 const getIndex = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
   response.write(index);
+  response.end();
+};
+
+const notFound = (request, response) => {
+  response.writeHead(404, { 'Content-Type': 'text/html' });
+  response.write(notFoundPage);
   response.end();
 };
 
@@ -31,6 +38,7 @@ const getJS = (request, response, pathName) => {
 
 module.exports = {
   getIndex,
+  notFound,
   getCSS,
   getPng,
   getJS,
