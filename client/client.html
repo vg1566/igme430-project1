@@ -4,48 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
     <link rel="stylesheet" type="text/css" href="/skeleton.css">
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <title>Project 1</title>
+    <title>Make a Bouquet</title>
     <script src="main.js"></script>
 </head>
 <body>
     <h1 class="title">Make a Bouquet of Flowers</h1>
     <hr>
     <main>
-        <section id="bouquet">
-            <img id="base-img">
-            <img id="flower1-img">
-            <img id="flower2-img">
-            <img id="flower3-img">
-        </section>
-        <button id="export" class="button">Export Bouquet</button>
-        <hr>
-        <section>
-            <span>This bouquet is for: </span>
-            <input type="text" id="name">
-            <input type="button" value="Save" id="save" class="button">
-        </section>
-        <br>
-        <section id="selected-flowers">
-            <button id="flower1-box" class="button">Edit flower 1</button>
-            <button id="flower2-box" class="button">Edit flower 2</button>
-            <button id="flower3-box" class="button">Edit flower 3</button>
-        </section>
-    
-        <section id="flower-types">
-            <p>Editing flower slot <span id="selection">1</span>'s type.</p>
-            <button id="rose" class="button">Rose</button>
-            <button id="cherry" class="button">Cherry Blossom</button>
-            <button id="calla" class="button">Calla Lily</button>
-        </section>
-        <br>
-        <section>
-            <span>Find a bouquet: </span>
-            <input type="text" id="oldName">
-            <input type="button" value="Search" id="search" class="button">
-        </section>
-        <span id="message"></span>
+        <div>
+            <section id="bouquet">
+                <img id="base-img">
+                <img id="flower1-img">
+                <img id="flower2-img">
+                <img id="flower3-img">
+            </section>
+            <button id="export" class="button">Export Bouquet</button>
+        </div>
+        <div id="userControls">
+            <h2>Edit Current Bouquet</h2>
+            <br>
+            <section id="selected-flowers">
+                <button id="flower1-box" class="button">Edit flower 1</button>
+                <button id="flower2-box" class="button">Edit flower 2</button>
+                <button id="flower3-box" class="button">Edit flower 3</button>
+            </section>
+        
+            <section id="flower-types">
+                <p>Editing flower slot <span id="selection">1</span>'s type.</p>
+                <button id="rose" class="button">Rose</button>
+                <button id="cherry" class="button">Cherry Blossom</button>
+                <button id="calla" class="button">Calla Lily</button>
+            </section>
+            <br>
+            <section>
+                <span>Save this bouquet for: </span>
+                <input type="text" id="name" placeholder="John Smith">
+                <input type="button" value="Save" id="save" class="button">
+            </section>
+            <section>
+                <span>Load the bouquet for: </span>
+                <input type="text" id="oldName" placeholder="John Smith">
+                <input type="button" value="Load" id="search" class="button">
+            </section>
+            <span id="message"></span>
+        </div>
     </main>
     <hr>
     <p>Skeleton CSS framework used (found <a href="http://getskeleton.com/">here</a>)</p>
