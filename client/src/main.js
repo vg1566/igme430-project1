@@ -79,7 +79,7 @@ const sendPost = async () => {
     });
 
     handleResponse(response, 'POST');
-  };
+};
 
 const sendFetchRequest = (url, requestedMethod) => {
     const options = {
@@ -91,14 +91,14 @@ const sendFetchRequest = (url, requestedMethod) => {
     fetchPromise.then((response) => { handleResponse(response) });
 };
 
+// If enter key was pressed, use the callback function
 const checkKey = (e, callback, callbackVar) => {
-    // if enter key is pressed, use the callback function
     if(e.keyCode === 13) {
         callback(callbackVar);
     }
 }
 
-sendGetBouquetRequest = (data) => {
+const sendGetBouquetRequest = (data) => {
     sendFetchRequest(`/getBouquet?name=${data}`, 'GET');
 }
 

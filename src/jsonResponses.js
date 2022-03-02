@@ -70,10 +70,9 @@ const addBouquet = (request, response, data) => {
   return respondJSON(request, response, 201, responseJSON);
 };
 
-// not used
 const notFound = (request, response) => {
   const responseJSON = {
-    message: 'The page you are looking for was not found.',
+    message: 'The file you are looking for was not found.',
     id: 'notFound',
   };
   return respondJSON(request, response, 404, responseJSON);

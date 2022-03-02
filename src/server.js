@@ -34,13 +34,15 @@ const urlStruct = {
   },
   GET: {
     '/': mixedHandler.getIndex,
+    '/documentation.html': mixedHandler.getDocs,
     '/style.css': mixedHandler.getCSS,
     '/skeleton.css': mixedHandler.getCSS,
     '/main.js': mixedHandler.getJS,
     '/fonts/Merienda-Bold.ttf': mixedHandler.getTTF,
     '/getBouquet': jsonHandler.getBouquet,
     getPng: mixedHandler.getPng,
-    notFound: mixedHandler.notFound,
+    pageNotFound: mixedHandler.pageNotFound,
+    notFound: jsonHandler.notFound,
   },
   POST: {
     '/addBouquet': handlePost,
@@ -59,6 +61,8 @@ const onRequest = (request, response) => {
     urlStruct[request.method].getPng(request, response, parsedUrl.pathname);
   } else if (urlStruct[request.method][parsedUrl.pathname]) {
     urlStruct[request.method][parsedUrl.pathname](request, response, parsedUrl.pathname, params);
+  } else if (parsedUrl.pathname.slice(parsedUrl.pathname.length - 5) === '.html') {
+    urlStruct[request.method].pageNotFound(request, response);
   } else {
     urlStruct[request.method].notFound(request, response);
   }
