@@ -4,11 +4,11 @@ body {
 }
 
 .button {
-    background-color: lightgray;
+    background-color: whitesmoke;
 }
 
 .button:hover {
-    background-color: whitesmoke;
+    background-color: lightgray;
 }
 
 

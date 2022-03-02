@@ -42,6 +42,9 @@ const urlStruct = {
     '/cherry1.png': mixedHandler.getPng,
     '/cherry2.png': mixedHandler.getPng,
     '/cherry3.png': mixedHandler.getPng,
+    '/calla1.png': mixedHandler.getPng,
+    '/calla2.png': mixedHandler.getPng,
+    '/calla3.png': mixedHandler.getPng,
     notFound: jsonHandler.notFound,
   },
   POST: {

@@ -1,8 +1,12 @@
-const flowerTypes = ['rose', 'cherry'];
+const flowerTypes = ['rose', 'cherry', 'calla'];
 
 let chosenFlowers = [0, 0, 0];
 let selectedFlower = 1;
 
+const imgHeight = 512;
+const imgWidth = 512;
+
+// Updates visible bouquet with currently selected flowers
 const setFlowers = () => {
     document.querySelector('#flower1-img').src = `/${flowerTypes[chosenFlowers[0]]}1.png`;
     document.querySelector('#flower2-img').src = `/${flowerTypes[chosenFlowers[1]]}2.png`;
@@ -13,6 +17,33 @@ const setFlowers = () => {
 const selectFlower = (num) => {
     selectedFlower = num;
     document.querySelector('#selection').innerHTML = num;
+}
+
+// Downloads current bouquet
+const exportImg = () => {
+    // make new canvas
+    const canvas = document.createElement('canvas');
+    canvas.height = imgHeight;
+    canvas.width = imgWidth;
+    const ctx = canvas.getContext('2d');
+
+    // draw images to canvas
+    const img = document.createElement('img');
+    img.src = '/vase-base.png';
+    ctx.drawImage(img, 0, 0);
+    img.src = `/${flowerTypes[chosenFlowers[0]]}1.png`;
+    ctx.drawImage(img, 0, 0);
+    img.src = `/${flowerTypes[chosenFlowers[1]]}2.png`;
+    ctx.drawImage(img, 0, 0);
+    img.src = `/${flowerTypes[chosenFlowers[2]]}3.png`;
+    ctx.drawImage(img, 0, 0);
+    
+    // download image
+    const newExport = canvas.toDataURL("image/png");
+    const link = document.createElement('a');
+    link.href = newExport;
+    link.download = 'bouquet';
+    link.click();
 }
 
 const handleResponse = async (response) => {
@@ -32,7 +63,6 @@ const handleResponse = async (response) => {
 const sendPost = async () => {
     const nameBox = document.querySelector('#name');
     const data = `name=${nameBox.value}&bouquet=${chosenFlowers}`;
-    console.log(nameBox.value);
 
     let response = await fetch('/addBouquet', {
       method: 'POST',
@@ -61,6 +91,10 @@ const init = () => {
     setFlowers();
     document.querySelector('#base-img').src = '/vase-base.png';
 
+    // link export button
+    const exportBtn = document.querySelector('#export');
+    exportBtn.onclick = exportImg;
+
     // save new bouquet 
     const saveBtn = document.querySelector('#save');
     saveBtn.onclick = sendPost;
@@ -70,6 +104,7 @@ const init = () => {
     const searchText = document.querySelector('#oldName');
     searchBtn.onclick = () => { sendFetchRequest(`/getBouquet?name=${searchText.value}`, 'GET') };
 
+    // link flower selectors
     const flower1Btn = document.querySelector('#flower1-box');
     const flower2Btn = document.querySelector('#flower2-box');
     const flower3Btn = document.querySelector('#flower3-box');
@@ -77,10 +112,13 @@ const init = () => {
     flower2Btn.onclick = () => { selectFlower(2) };
     flower3Btn.onclick = () => { selectFlower(3) };
 
+    // link flower type selectors
     const roseBtn = document.querySelector('#rose');
     const cherryBtn = document.querySelector('#cherry');
+    const callaBtn = document.querySelector('#calla');
     roseBtn.onclick = () => { chosenFlowers[selectedFlower-1] = 0; setFlowers(); };
     cherryBtn.onclick = () => { chosenFlowers[selectedFlower-1] = 1; setFlowers(); };
+    callaBtn.onclick = () => { chosenFlowers[selectedFlower-1] = 2; setFlowers(); };
     
 }
 
