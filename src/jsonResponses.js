@@ -47,7 +47,7 @@ const getBouquetMeta = (request, response, url, data) => {
 
 const addBouquet = (request, response, data) => {
   // return 400 if bad data
-  if(!data.name) {
+  if (!data.name) {
     const responseJSON = {
       message: 'Error: No text was entered.',
       id: 'noNameReceived',
@@ -56,7 +56,7 @@ const addBouquet = (request, response, data) => {
   }
   // update existing bouquet
   if (bouquets[data.name]) {
-    bouquets[data.name].bouquet = data.bouquet; 
+    bouquets[data.name].bouquet = data.bouquet;
     return respondJSONMeta(request, response, 204);
   }
   // create new bouquet

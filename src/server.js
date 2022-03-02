@@ -55,7 +55,7 @@ const onRequest = (request, response) => {
   const params = query.parse(parsedUrl.query);
 
   // handle the request. If no handler found, use notFound
-  if (parsedUrl.pathname.slice(parsedUrl.pathname.length-4) === '.png') {
+  if (parsedUrl.pathname.slice(parsedUrl.pathname.length - 4) === '.png') {
     urlStruct[request.method].getPng(request, response, parsedUrl.pathname);
   } else if (urlStruct[request.method][parsedUrl.pathname]) {
     urlStruct[request.method][parsedUrl.pathname](request, response, parsedUrl.pathname, params);

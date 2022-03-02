@@ -31,7 +31,7 @@ const getTTF = (request, response, pathName) => {
 // get correct png based on pathName
 const getPng = (request, response, pathName) => {
   // check to see if file exists
-  if(fs.existsSync(`${__dirname}/../client/media${pathName}`)) {
+  if (fs.existsSync(`${__dirname}/../client/media${pathName}`)) {
     response.writeHead(200, { 'Content-Type': 'image/png' });
     response.write(fs.readFileSync(`${__dirname}/../client/media${pathName}`));
   } else {
