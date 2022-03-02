@@ -37,17 +37,9 @@ const urlStruct = {
     '/style.css': mixedHandler.getCSS,
     '/skeleton.css': mixedHandler.getCSS,
     '/main.js': mixedHandler.getJS,
+    '/fonts/Merienda-Bold.ttf': mixedHandler.getTTF,
     '/getBouquet': jsonHandler.getBouquet,
-    '/vase-base.png': mixedHandler.getPng,
-    '/rose1.png': mixedHandler.getPng,
-    '/rose2.png': mixedHandler.getPng,
-    '/rose3.png': mixedHandler.getPng,
-    '/cherry1.png': mixedHandler.getPng,
-    '/cherry2.png': mixedHandler.getPng,
-    '/cherry3.png': mixedHandler.getPng,
-    '/calla1.png': mixedHandler.getPng,
-    '/calla2.png': mixedHandler.getPng,
-    '/calla3.png': mixedHandler.getPng,
+    getPng: mixedHandler.getPng,
     notFound: mixedHandler.notFound,
   },
   POST: {
@@ -63,7 +55,9 @@ const onRequest = (request, response) => {
   const params = query.parse(parsedUrl.query);
 
   // handle the request. If no handler found, use notFound
-  if (urlStruct[request.method][parsedUrl.pathname]) {
+  if (parsedUrl.pathname.slice(parsedUrl.pathname.length-4) === '.png') {
+    urlStruct[request.method].getPng(request, response, parsedUrl.pathname);
+  } else if (urlStruct[request.method][parsedUrl.pathname]) {
     urlStruct[request.method][parsedUrl.pathname](request, response, parsedUrl.pathname, params);
   } else {
     urlStruct[request.method].notFound(request, response);

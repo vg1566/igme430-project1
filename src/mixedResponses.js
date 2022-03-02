@@ -22,10 +22,22 @@ const getCSS = (request, response, pathName) => {
   response.end();
 };
 
+const getTTF = (request, response, pathName) => {
+  response.writeHead(200, { 'Content-Type': 'font/ttf' });
+  response.write(fs.readFileSync(`${__dirname}/../client/media${pathName}`));
+  response.end();
+};
+
 // get correct png based on pathName
 const getPng = (request, response, pathName) => {
-  response.writeHead(200, { 'Content-Type': 'image/png' });
-  response.write(fs.readFileSync(`${__dirname}/../client/media${pathName}`));
+  // check to see if file exists
+  if(fs.existsSync(`${__dirname}/../client/media${pathName}`)) {
+    response.writeHead(200, { 'Content-Type': 'image/png' });
+    response.write(fs.readFileSync(`${__dirname}/../client/media${pathName}`));
+  } else {
+    response.writeHead(404, { 'Content-Type': 'application/json' });
+    response.write(JSON.stringify({ message: 'Image not found.', id: 'pngNotFound' }));
+  }
   response.end();
 };
 
@@ -40,6 +52,7 @@ module.exports = {
   getIndex,
   notFound,
   getCSS,
+  getTTF,
   getPng,
   getJS,
 };

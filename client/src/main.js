@@ -67,7 +67,7 @@ const handleResponse = async (response) => {
 
 const sendPost = async () => {
     const nameBox = document.querySelector('#name');
-    const data = `name=${nameBox.value}&bouquet=${chosenFlowers}`;
+    const data = `name=${nameBox.value.toLowerCase()}&bouquet=${chosenFlowers}`;
 
     let response = await fetch('/addBouquet', {
       method: 'POST',
@@ -91,8 +91,18 @@ const sendFetchRequest = (url, requestedMethod) => {
     fetchPromise.then((response) => { handleResponse(response) });
 };
 
+const checkKey = (e, callback, callbackVar) => {
+    // if enter key is pressed, use the callback function
+    if(e.keyCode === 13) {
+        callback(callbackVar);
+    }
+}
+
+sendGetBouquetRequest = (data) => {
+    sendFetchRequest(`/getBouquet?name=${data}`, 'GET');
+}
+
 const init = () => {
-    
     // set and display default bouquet
     setFlowers();
     document.querySelector('#base-img').src = '/vase-base.png';
@@ -103,12 +113,15 @@ const init = () => {
 
     // save new bouquet 
     const saveBtn = document.querySelector('#save');
+    const nameBox = document.querySelector('#name');
     saveBtn.onclick = sendPost;
+    nameBox.onkeyup = (e) => { checkKey(e, sendPost) };
 
     // search for old bouquet
     const searchBtn = document.querySelector('#search');
     const searchText = document.querySelector('#oldName');
-    searchBtn.onclick = () => { sendFetchRequest(`/getBouquet?name=${searchText.value}`, 'GET') };
+    searchBtn.onclick = () => { sendGetBouquetRequest(searchText.value.toLowerCase()) };
+    searchText.onkeyup = (e) => { checkKey(e, sendGetBouquetRequest, searchText.value.toLowerCase()) };
 
     // link flower selectors
     const flower1Btn = document.querySelector('#flower1-box');
@@ -125,7 +138,6 @@ const init = () => {
     roseBtn.onclick = () => { chosenFlowers[selectedFlower-1] = 0; setFlowers(); };
     cherryBtn.onclick = () => { chosenFlowers[selectedFlower-1] = 1; setFlowers(); };
     callaBtn.onclick = () => { chosenFlowers[selectedFlower-1] = 2; setFlowers(); };
-    
 }
 
 window.onload = init;
