@@ -22,6 +22,15 @@ body {
     text-align: center;
 }
 
+ul {
+    width: 35%;
+    margin: 0 auto;
+}
+
+li {
+    text-align: left;
+}
+
 .button {
     background-color: whitesmoke;
     font-family: 'Merienda';

@@ -47,13 +47,11 @@ const exportImg = () => {
 }
 
 const handleResponse = async (response) => {
-    console.log(response);
     if(response.status === 204) {
         document.querySelector('#message').innerHTML = 'Updated Successfully.';
     }
     else {
         const resObj = await response.json();
-        console.log(resObj);
         if(resObj.bouquet) {
             chosenFlowers = resObj.bouquet.split(',').map((num) => { return parseInt(num, 10) });
             setFlowers();
